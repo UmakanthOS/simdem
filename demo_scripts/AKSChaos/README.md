@@ -8,6 +8,16 @@ az login
 env | grep MY_
 ```
 
+# Create a resource group
+
+A resource group is a container for related resources. All resources must be placed in a resource group. We will create one for this tutorial. 
+
+This command used two environment variables, `MY_RESOURCE_GROUP_NAME` is the name of the resource group and will be commonly using in other commands. `MY_LOCATION` is the data center that the resource group will be created in. When this command has completed it will return a JSON file. You can see what the values are set at for this tutorial in that output.
+
+```
+az group create --name $MY_RESOURCE_GROUP_NAME --location $MY_LOCATION
+```
+
 ## Create an AKS Cluster 
 The next step is to create an AKS Cluster. This can be done with the following command - 
 ```
