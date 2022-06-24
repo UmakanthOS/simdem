@@ -117,7 +117,7 @@ az rest --method put --url "https://management.azure.com/$MY_AKS_RESOURCE_ID/pro
 
 Your AKS cluster is now onboarded. Time to create your Chaos experiment
 ```
-export MY_PRINCIPAL_ID=$(az rest --method put --uri https://management.azure.com/subscriptions/f7a60fca-9977-4899-b907-005a076adbb6/resourceGroups/myAKSResourceGroup/providers/Microsoft.Chaos/experiments/myExperiment?api-version=2021-09-15-preview --body @experiment.json | grep 'principalId' | awk '{print $2}' | sed -e 's/^.//' -e 's/..$//')
+export MY_PRINCIPAL_ID=$(az rest --method put --uri https://management.azure.com/subscriptions/$MY_AZURE_SUB_ID/resourceGroups/myAKSResourceGroup/providers/Microsoft.Chaos/experiments/myExperiment?api-version=2021-09-15-preview --body @experiment.json | grep 'principalId' | awk '{print $2}' | sed -e 's/^.//' -e 's/..$//')
 echo $MY_PRINCIPAL_ID
 ```
 
