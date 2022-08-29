@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: httpbin
+  namespace: httpbin
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: httpbin
+            port:
+              number: 14001
+---
+kind: IngressBackend
+apiVersion: policy.openservicemesh.io/v1alpha1
+metadata:
+  name: httpbin
+  namespace: httpbin
+spec:
+  backends:
+  - name: httpbin
+    port:
+      number: 14001 # targetPort of httpbin service
+      protocol: http
+  sources:
+  - kind: IPRange
+    name: 10.0.0.0/8
